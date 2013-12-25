@@ -80,6 +80,7 @@ class DatabaseConnect {
 		}
 
 		try {
+			$this->loadCredentials();
 			$pdo = new PDO(
 				'mysql:host=' . $host . ';',
 				$this->dbUser,
