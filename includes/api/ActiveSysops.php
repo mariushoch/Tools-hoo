@@ -63,7 +63,8 @@ class ActiveSysops extends Base {
 	}
 
 	protected function replag( $db ) {
-		return (new Replag( $this->databaseConnect->getFromDatabaseName( $db ) ))->getReplagForDB( $db );
+		$replag = new Replag( $this->databaseConnect->getFromDatabaseName( $db ) );
+		return $replag->getReplagForDB( $db );
 	}
 
 	/**
