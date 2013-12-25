@@ -106,9 +106,9 @@ class DatabaseConnect {
 	 * @return PDO
 	 */
 	public function getFromDatabaseName( $database, $reConnect = false ) {
-		$database = str_replace( '_p', '', $database );
+		$database = str_replace( '_p', '', $database ) . '.labsdb';
 
-		$host = gethostbyname( $database . '.labsdb' );
+		$host = gethostbyname( $database );
 
 		// gethostbyname returns what it has been given in case it couldn't resolve the name
 		if ( $host === $database ) {
