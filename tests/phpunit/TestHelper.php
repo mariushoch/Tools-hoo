@@ -16,7 +16,7 @@ class TestHelper {
 	 * @return bool
 	 */
 	public static function isLabs() {
-		if ( gethostbyname( 'commsonwiki.labsdb' ) !== 'commsonwiki.labsdb' ) {
+		if ( gethostbyname( 'commsonwiki.labsdb' ) !== 'commonswiki.labsdb' ) {
 			return true;
 		}
 

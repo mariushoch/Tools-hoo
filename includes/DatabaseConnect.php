@@ -74,7 +74,6 @@ class DatabaseConnect {
 	 * @return PDO
 	 */
 	public function getFromHost( $host, $reConnect = false ) {
-		$host .= '.labsdb';
 
 		if ( !$reConnect && isset( $connectionCache[ $host ] ) && $connectionCache[ $host ] ) {
 			return $connectionCache[ $host ];
