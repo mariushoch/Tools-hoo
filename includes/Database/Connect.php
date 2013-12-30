@@ -1,8 +1,7 @@
 <?php
 
-namespace hoo;
+namespace hoo\Database;
 
-use PDO;
 use RuntimeException;
 
 /**
@@ -42,7 +41,17 @@ class DatabaseConnect {
 	/**
 	 * @var PDO[]
 	 */
-	private $connectionCache = array();
+	protected $connectionCache = array();
+
+	/**
+	 * @var DatabaseNameLookup
+	 */
+	protected $databaseNameLookup;
+
+	public function __construct( $databaseNameLookup = null ) {
+		$this->databaseNameLookup = $databaseNameLookup ?
+			$databaseNameLookup : new DatabaseNameLookup();
+	}
 
 	/**
 	 * Load the credentials for database access from ~/replica.my.cnf
@@ -108,10 +117,9 @@ class DatabaseConnect {
 	public function getFromDatabaseName( $database, $reConnect = false ) {
 		$database = str_replace( '_p', '', $database ) . '.labsdb';
 
-		$host = gethostbyname( $database );
+		$host = $this->databaseNameLookup->lookup( $database );
 
-		// gethostbyname returns what it has been given in case it couldn't resolve the name
-		if ( $host === $database ) {
+		if ( !$host ) {
 			throw new RuntimeException( "Unknown database $database" );
 		}
 		return $this->getFromHost( $host, $reConnect );

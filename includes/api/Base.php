@@ -3,9 +3,8 @@
 namespace hoo\Api;
 use hoo\InputValidation;
 use hoo\Request;
-use hoo\DatabaseConnect;
-use hoo\DatabaseNameLookup;
-use hoo\Database;
+use hoo\Database\DatabaseConnect;
+use hoo\Database\DatabaseNameLookup;
 
 /**
  * Base class for API module to derive from

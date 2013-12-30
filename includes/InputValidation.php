@@ -2,6 +2,7 @@
 
 namespace hoo;
 use hoo\Request;
+use hoo\Database\DatabaseNameLookup;
 use RuntimeException;
 
 /**

@@ -1,7 +1,7 @@
 <?php
 
 namespace hoo\Test;
-use hoo\DatabaseConnect;
+use hoo\Database\DatabaseConnect;
 use PHPUnit_Framework_TestCase;
 
 /**

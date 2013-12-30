@@ -32,10 +32,10 @@ class ActiveSysopsTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @param mixed $return
 	 *
-	 * @return \hoo\DatabaseConnect
+	 * @return \hoo\Database\DatabaseConnect
 	 */
 	public function getDatabaseConnectMock( $return ) {
-		$dbConn = $this->getMock( '\hoo\DatabaseConnect' );
+		$dbConn = $this->getMock( '\hoo\Database\DatabaseConnect' );
 
 		$pdoMock = $this->getMock( '\hoo\Api\Test\ActiveSysopsMockPDO' );
 
@@ -64,10 +64,10 @@ class ActiveSysopsTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @param mixed $return
 	 *
-	 * @return \hoo\DatabaseNameLookup
+	 * @return \hoo\Database\DatabaseNameLookup
 	 */
 	public function getDatabaseNameLookupMock( $return ) {
-		$databaseNameLookup = $this->getMock( '\hoo\DatabaseNameLookup' );
+		$databaseNameLookup = $this->getMock( '\hoo\Database\DatabaseNameLookup' );
 
 		$databaseNameLookup->expects( $this->any() )
 			->method( 'lookup' )
@@ -90,7 +90,7 @@ class ActiveSysopsTest extends PHPUnit_Framework_TestCase {
 		$activeSysops = new ActiveSysops( new Request( $data ), $dbConn, $databaseNameLookup );
 
 		$this->assertEquals(
-			array( 'count' => 123, 'replag' => 123 ),
+			array( 'count' => 123 ),
 			$activeSysops->execute()
 		);
     }

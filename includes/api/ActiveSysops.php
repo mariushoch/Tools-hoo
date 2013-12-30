@@ -3,9 +3,8 @@
 namespace hoo\Api;
 use hoo\Api\Exception;
 use hoo\Request;
-use hoo\DatabaseConnect;
-use hoo\DatabaseNameLookup;
-use hoo\Replag;
+use hoo\Database\DatabaseConnect;
+use hoo\Database\DatabaseNameLookup;
 use DateTime;
 use PDO;
 
@@ -62,11 +61,6 @@ class ActiveSysops extends Base {
 		);
 	}
 
-	protected function replag( $db ) {
-		$replag = new Replag( $this->databaseConnect->getFromDatabaseName( $db ) );
-		return $replag->getReplagForDB( $db );
-	}
-
 	/**
 	 * @return string
 	 */
@@ -98,8 +92,7 @@ class ActiveSysops extends Base {
 		}
 
 		return array(
-			'count' => (int)$activeSysops,
-			'replag' => $this->replag( $params['wiki'] )
+			'count' => (int)$activeSysops
 		);
 	}
 }

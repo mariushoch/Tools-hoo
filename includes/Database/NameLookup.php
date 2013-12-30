@@ -1,7 +1,6 @@
 <?php
 
-namespace hoo;
-use hoo\Request;
+namespace hoo\Database;
 
 /**
  * Class for verifying that the input is complete and sane.

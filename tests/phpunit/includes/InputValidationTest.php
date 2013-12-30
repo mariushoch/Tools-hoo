@@ -3,7 +3,7 @@
 namespace hoo\Test;
 use hoo\InputValidation;
 use hoo\Request;
-use hoo\DatabaseNameLookup;
+use hoo\Database\DatabaseNameLookup;
 use PHPUnit_Framework_TestCase;
 
 /**
@@ -119,7 +119,7 @@ class InputValidationTest extends PHPUnit_Framework_TestCase {
 	 * @dataProvider verifyRequestFulfillsTypeWikiProvider
 	 */
 	public function testVerifyRequestFulfillsTypeWiki( $params, $fail, $expected ) {
-		$databaseNameLookup = $this->getMock( '\hoo\DatabaseNameLookup' );
+		$databaseNameLookup = $this->getMock( '\hoo\Database\DatabaseNameLookup' );
 
 		$databaseNameLookup->expects( $this->once() )
 			->method( 'lookup' )
