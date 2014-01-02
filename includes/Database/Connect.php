@@ -1,7 +1,7 @@
 <?php
 
 namespace hoo\Database;
-
+use PDO;
 use RuntimeException;
 
 /**
@@ -60,7 +60,7 @@ class DatabaseConnect {
 	 */
 	private function loadCredentials() {
 		if ( !$this->dbPass ) {
-			@$mycnf = parse_ini_file( __DIR__ . '/../../replica.my.cnf' );
+			@$mycnf = parse_ini_file( __DIR__ . '/../../../replica.my.cnf' );
 
 			if ( !is_array( $mycnf ) || !isset( $mycnf['password'] ) || !isset( $mycnf['user'] ) ) {
 				throw new RuntimeException( "Couldn't load database credentials from replica.my.cnf" );
