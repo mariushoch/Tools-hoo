@@ -3,7 +3,7 @@
 namespace hoo\Database;
 
 /**
- * Class for verifying that the input is complete and sane.
+ * Class for looking up and verifying labs database names.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

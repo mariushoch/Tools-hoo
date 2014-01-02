@@ -44,9 +44,15 @@ class DatabaseConnectTest extends PHPUnit_Framework_TestCase {
 		);
 	}
 
-	public function testNewFromDatabaseFail() {
+	public function testGetFromDatabaseFail() {
 		$dbConn= new DatabaseConnect();
 		$this->setExpectedException( 'RuntimeException' );
 		$dbConn->getFromDatabaseName( 'invalid_database_name' );
+	}
+
+	public function testGetFromHostFail() {
+		$dbConn= new DatabaseConnect();
+		$this->setExpectedException( 'RuntimeException' );
+		$dbConn->getFromHost( 'database.invalid' );
 	}
 }

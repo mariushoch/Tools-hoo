@@ -60,7 +60,7 @@ class DatabaseConnect {
 	 */
 	private function loadCredentials() {
 		if ( !$this->dbPass ) {
-			$mycnf = parse_ini_file( __DIR__ . '/../../replica.my.cnf' );
+			@$mycnf = parse_ini_file( __DIR__ . '/../../replica.my.cnf' );
 
 			if ( !is_array( $mycnf ) || !isset( $mycnf['password'] ) || !isset( $mycnf['user'] ) ) {
 				throw new RuntimeException( "Couldn't load database credentials from replica.my.cnf" );
@@ -115,8 +115,6 @@ class DatabaseConnect {
 	 * @return PDO
 	 */
 	public function getFromDatabaseName( $database, $reConnect = false ) {
-		$database = str_replace( '_p', '', $database ) . '.labsdb';
-
 		$host = $this->databaseNameLookup->lookup( $database );
 
 		if ( !$host ) {
