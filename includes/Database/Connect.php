@@ -49,6 +49,7 @@ class DatabaseConnect {
 	protected $databaseNameLookup;
 
 	public function __construct( $databaseNameLookup = null ) {
+		// @FIXME: Force injection
 		$this->databaseNameLookup = $databaseNameLookup ?
 			$databaseNameLookup : new DatabaseNameLookup();
 	}
@@ -59,6 +60,7 @@ class DatabaseConnect {
 	 * @throws RuntimeException
 	 */
 	private function loadCredentials() {
+		// @FIXME: This mustn't be here!
 		if ( !$this->dbPass ) {
 			@$mycnf = parse_ini_file( __DIR__ . '/../../../replica.my.cnf' );
 

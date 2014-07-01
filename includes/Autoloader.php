@@ -6,6 +6,7 @@ function hooAutoloader( $class ) {
 		'hoo\Database\DatabaseNameLookup' => 'Database/NameLookup.php',
 		'hoo\Request' => 'Request.php',
 		'hoo\InputValidation' => 'InputValidation.php',
+		'hoo\ModuleSelector' => 'ModuleSelector.php',
 		'hoo\Api\Exception' => 'api/Exception.php',
 		'hoo\Api\RequestHandler' => 'api/RequestHandler.php',
 		'hoo\Api\Base' => 'api/Base.php',
