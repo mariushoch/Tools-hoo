@@ -26,7 +26,7 @@ $json = json_encode( $apiHandle->execute() );
 
 if ( $mainRequest->getInput( 'callback' ) ) {
 	echo $mainRequest->getInput( 'callback' ) . '("';
-	echo str_replace( '""', '\"', $json );
+	echo str_replace( '"', '\"', $json );
 	echo '");';
 } else {
 	echo $json;
