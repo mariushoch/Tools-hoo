@@ -5,7 +5,7 @@ use hoo\Request;
 use hoo\Database\DatabaseConnect;
 use hoo\Database\DatabaseNameLookup;
 
-require_once __DIR__ . '/WebStart.php';
+require_once __DIR__ . '/includes/WebStart.php';
 
 $mainRequest = new Request( $_GET, $_POST );
 
