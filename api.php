@@ -14,7 +14,7 @@ if ( $mainRequest->getInput( 'action' ) !== 'activeSysops' ) {
 }
 
 $moduleSelector = new ModuleSelector();
-$api = $moduleSelector->getHandler();
+$apiModule = $moduleSelector->getHandler();
 
 $apiHandle = new $apiModule(
 		$mainRequest,
