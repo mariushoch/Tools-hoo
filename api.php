@@ -25,9 +25,7 @@ $apiHandle = new $apiModule(
 $json = json_encode( $apiHandle->execute() );
 
 if ( $mainRequest->getInput( 'callback' ) ) {
-	echo $mainRequest->getInput( 'callback' ) . '("';
-	echo str_replace( '"', '\"', $json );
-	echo '");';
+	echo $mainRequest->getInput( 'callback' ) . '(' . $json . ');';
 } else {
 	echo $json;
 }
