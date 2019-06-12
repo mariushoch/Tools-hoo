@@ -77,9 +77,10 @@ class ActiveSysops extends Base {
 		$lastActionTime = $date->format( 'YmdHis' );
 		$db = $this->databaseConnect->getFromDatabaseName( $params['wiki'] );
 
-		$query = 'SELECT COUNT(*) AS active_sysops FROM (SELECT log_user AS user FROM ' . $params['wiki'] .
-			'.logging WHERE log_type IN ("block","delete","protect") AND log_timestamp > :lastActionTime GROUP BY log_user) as active_users INNER JOIN ' . $params['wiki'] .
-			'.user_groups ON ug_user = active_users.user WHERE ug_group = "sysop"';
+		$query = 'SELECT COUNT(*) AS active_sysops FROM (SELECT log_actor FROM ' . $params['wiki'] .
+			'.logging WHERE log_type IN ("block","delete","protect") AND log_timestamp > :lastActionTime GROUP BY log_actor) as active_users ' .
+			'INNER JOIN ' . $params['wiki'] . '.actor ON active_users.log_actor = actor_id ' .
+			'INNER JOIN ' . $params['wiki'] . '.user_groups ON ug_user = actor_user WHERE ug_group = "sysop"';
 
 		$statement = $db->prepare( $query );
 		$statement->bindValue( ':lastActionTime', $lastActionTime, PDO::PARAM_STR );
@@ -87,8 +88,15 @@ class ActiveSysops extends Base {
 
 		$activeSysops = $statement->fetchColumn(0);
 
-		if( $statement->errorCode() != 00000 || !is_numeric( $activeSysops ) ) {
-			throw new Exception( 'Database error: ' . $params['wiki'] );
+		if( $statement->errorCode() && $statement->errorCode() !== '00000' ) {
+				throw new Exception(
+						'Database error (' . $statement->errorCode() . ') on ' . $params['wiki']
+				);
+		}
+		if( !is_numeric( $activeSysops ) ) {
+				throw new Exception(
+						'Invalid result: ' . var_export( $activeSysops, true )
+				);
 		}
 
 		return array(
