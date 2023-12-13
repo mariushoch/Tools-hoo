@@ -34,7 +34,7 @@ class DatabaseNameLookup {
 	 * @return string|null
 	 */
 	public function lookup( $name ) {
-		$name = str_replace( '_p', '', $name ) . '.labsdb';
+		$name = str_replace( '_p', '', $name ) . '.analytics.db.svc.wikimedia.cloud';
 
 		$host = gethostbyname( $name );
 
