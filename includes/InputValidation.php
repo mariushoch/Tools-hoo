@@ -135,8 +135,8 @@ class InputValidation {
 			case 'list':
 				return explode( '|', $input );
 			case 'wiki':
-				// Databases don't need any conversion
-				return $input;
+				// Return wiki names without the trailing _p
+				return str_replace( '_p', '', $input );
 			break;
 			default:
 				throw new RuntimeException( 'Unknown input data type ' . $type );
